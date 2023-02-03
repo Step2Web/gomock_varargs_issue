@@ -12,7 +12,7 @@ func TestExecuteQuery(t *testing.T) {
 	tests := []struct {
 		name             string
 		configureExpects func(session *MockSession, query *MockQuery, now time.Time)
-		score            *ReputationScore
+		score            *SomeStruct
 	}{
 		{
 			// Succeeds
@@ -22,7 +22,7 @@ func TestExecuteQuery(t *testing.T) {
 				queryMock.EXPECT().Exec().Times(1)
 
 			},
-			score: &ReputationScore{
+			score: &SomeStruct{
 				Id:        "t2_123",
 				Value1:    555,
 				Value2:    0,
@@ -37,7 +37,7 @@ func TestExecuteQuery(t *testing.T) {
 				queryMock.EXPECT().Exec().Times(1)
 
 			},
-			score: &ReputationScore{
+			score: &SomeStruct{
 				Id:        "t2_123",
 				Value1:    555,
 				Value2:    0,
@@ -52,7 +52,7 @@ func TestExecuteQuery(t *testing.T) {
 				queryMock.EXPECT().Exec().Times(1)
 
 			},
-			score: &ReputationScore{
+			score: &SomeStruct{
 				Id:        "t2_123",
 				Value1:    555,
 				Value2:    0,
@@ -67,7 +67,7 @@ func TestExecuteQuery(t *testing.T) {
 				queryMock.EXPECT().Exec().Times(1)
 
 			},
-			score: &ReputationScore{
+			score: &SomeStruct{
 				Id:        "t2_123",
 				Value1:    555,
 				Value2:    0,

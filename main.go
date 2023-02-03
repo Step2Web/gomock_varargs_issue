@@ -4,15 +4,15 @@ import (
 	"github.com/willfaught/gockle"
 )
 
-type ReputationScore struct {
+type SomeStruct struct {
 	Id             string
 	Value1, Value2 uint16
 	Timestamp      int64
 }
 
-func ExecuteQuery(session gockle.Session, providedScore *ReputationScore) {
+func ExecuteQuery(session gockle.Session, someStruct *SomeStruct) {
 	session.Query(`INSERT INTO table1 (id, value1, value2, timestamp) VALUES (?, ?, ?, ?)`,
-		providedScore.Id, providedScore.Value1, providedScore.Value2, providedScore.Timestamp).Exec()
+		someStruct.Id, someStruct.Value1, someStruct.Value2, someStruct.Timestamp).Exec()
 }
 
 func main() {
