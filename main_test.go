@@ -15,6 +15,7 @@ func TestExecuteQuery(t *testing.T) {
 		score            *ReputationScore
 	}{
 		{
+			// Succeeds
 			name: "Use Any for all parameters",
 			configureExpects: func(sessionMock *MockSession, queryMock *MockQuery, now time.Time) {
 				sessionMock.EXPECT().Query(`INSERT INTO table1 (id, value1, value2, timestamp) VALUES (?, ?, ?, ?)`, gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).Return(queryMock).Times(1)
@@ -29,6 +30,7 @@ func TestExecuteQuery(t *testing.T) {
 			},
 		},
 		{
+			// Succeeds
 			name: "Use Any for all parameters, except Id",
 			configureExpects: func(sessionMock *MockSession, queryMock *MockQuery, now time.Time) {
 				sessionMock.EXPECT().Query(`INSERT INTO table1 (id, value1, value2, timestamp) VALUES (?, ?, ?, ?)`, "t2_123", gomock.Any(), gomock.Any(), gomock.Any()).Return(queryMock).Times(1)
@@ -43,6 +45,7 @@ func TestExecuteQuery(t *testing.T) {
 			},
 		},
 		{
+			// Fails - although expected to succeed
 			name: "Exact Match",
 			configureExpects: func(sessionMock *MockSession, queryMock *MockQuery, now time.Time) {
 				sessionMock.EXPECT().Query(`INSERT INTO table1 (id, value1, value2, timestamp) VALUES (?, ?, ?, ?)`, "t2_123", 555, 0, now).Return(queryMock).Times(1)
@@ -57,6 +60,7 @@ func TestExecuteQuery(t *testing.T) {
 			},
 		},
 		{
+			// Fails - But I would not expect this to succeed
 			name: "Varargs as interface{} list",
 			configureExpects: func(sessionMock *MockSession, queryMock *MockQuery, now time.Time) {
 				sessionMock.EXPECT().Query(`INSERT INTO table1 (id, value1, value2, timestamp) VALUES (?, ?, ?, ?)`, []interface{}{"t2_123", 555, 0, now}).Return(queryMock).Times(1)
